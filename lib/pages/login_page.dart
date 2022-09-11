@@ -5,6 +5,21 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          children: [
+            const Icon(Icons.people),
+            const TextField(),
+            const TextField(),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('ENTRAR'),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
