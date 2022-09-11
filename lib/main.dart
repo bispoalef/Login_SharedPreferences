@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.SPLASH,
       routes: {
         Routes.SPLASH: (_) => const SplashPage(),
-        Routes.LOGIN: (_) => const LoginPage(),
+        Routes.LOGIN: (_) =>  LoginPage(),
         Routes.HOME: (_) => const HomePage(),
       },
     );
