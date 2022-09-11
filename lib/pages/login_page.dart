@@ -24,20 +24,34 @@ class LoginPage extends StatelessWidget {
               obscureText: true,
               decoration: const InputDecoration(label: Text('Senha')),
             ),
-            ElevatedButton(
-              onPressed: () {
-                _controller.auth().then(
-                  (value) {
-                    if (value == true) {
-                      Navigator.of(context).pushReplacementNamed(Routes.HOME);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('Login ou senha incorreto.')));
-                    }
-                  },
-                );
-              },
-              child: const Text('ENTRAR'),
+            ValueListenableBuilder<bool>(
+              valueListenable: _controller.loader,
+              builder: (_, loader, __) => loader
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () {
+                        _controller.auth().then(
+                          (value) {
+                            if (value == true) {
+                              Navigator.of(context)
+                                  .pushReplacementNamed(Routes.HOME);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  duration: Duration(seconds: 5),
+                                  elevation: 5,
+                                  content: Text(
+                                    'Login ou senha inválidos.',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        );
+                      },
+                      child: const Text('ENTRAR'),
+                    ),
             )
           ],
         ),
