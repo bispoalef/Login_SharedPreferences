@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_shared_prefs/repositories/home_repository_implement.dart';
+import 'package:login_shared_prefs/services/prefs_service.dart';
 import 'package:login_shared_prefs/routes/routes.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,8 +12,12 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2)).then(
-        (value) => Navigator.of(context).pushReplacementNamed(Routes.LOGIN));
+    Future.wait([
+      PrefsService.isAuth(),
+      Future.delayed(const Duration(seconds: 2)),
+    ]).then((value) => value[0]
+        ? Navigator.of(context).pushReplacementNamed(Routes.HOME)
+        : Navigator.of(context).pushReplacementNamed(Routes.LOGIN));
 
     super.initState();
   }

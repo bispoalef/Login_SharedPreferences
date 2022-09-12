@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:login_shared_prefs/services/prefs_service.dart';
 
 class LoginController {
   ValueNotifier<bool> loader = ValueNotifier<bool>(false);
@@ -16,6 +17,7 @@ class LoginController {
     loader.value = false;
 
     if (_login == 'adm' && _pass == '123') {
+      PrefsService.save(_login!);
       return true;
     }
     return false;

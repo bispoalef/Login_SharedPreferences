@@ -3,6 +3,7 @@ import 'package:login_shared_prefs/controllers/home_controller.dart';
 import 'package:login_shared_prefs/models/person_model.dart';
 import 'package:login_shared_prefs/repositories/home_repository_implement.dart';
 import 'package:login_shared_prefs/routes/routes.dart';
+import 'package:login_shared_prefs/services/prefs_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,6 +26,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Personagens')),
+        actions: [
+          IconButton(
+              onPressed: () {
+                PrefsService.logout();
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  Routes.LOGIN,
+                  (route) => false,
+                );
+              },
+              icon: const Icon(Icons.logout))
+        ],
       ),
       body: ValueListenableBuilder<List<PersonModel>>(
         valueListenable: _controller.personList,
