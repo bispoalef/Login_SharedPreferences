@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_shared_prefs/controllers/home_controller.dart';
 import 'package:login_shared_prefs/models/person_model.dart';
 import 'package:login_shared_prefs/repositories/home_repository_implement.dart';
+import 'package:login_shared_prefs/routes/routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -41,6 +42,12 @@ class _HomePageState extends State<HomePage> {
               title: Text(list[index].name),
               subtitle: Text(list[index].species),
               trailing: const Icon(Icons.arrow_forward),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  Routes.HOME_DETAIL,
+                  arguments: list[index],
+                );
+              },
             ),
           );
         },

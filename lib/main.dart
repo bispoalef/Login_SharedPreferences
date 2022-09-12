@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_shared_prefs/pages/home_page.dart';
+import 'package:login_shared_prefs/pages/home_page_detail.dart';
 import 'package:login_shared_prefs/pages/login_page.dart';
 import 'package:login_shared_prefs/pages/splash_page.dart';
 import 'package:login_shared_prefs/routes/routes.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         Routes.SPLASH: (_) => const SplashPage(),
         Routes.LOGIN: (_) =>  LoginPage(),
         Routes.HOME: (_) => const HomePage(),
+        Routes.HOME_DETAIL: (_) => const HomePageDetail(),
       },
     );
   }
