@@ -38,31 +38,33 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: ValueListenableBuilder<List<PersonModel>>(
-        valueListenable: _controller.personList,
-        builder: (_, list, __) {
-          return ListView.separated(
-            separatorBuilder: (_, __) => const Divider(),
-            itemCount: list.length,
-            itemBuilder: (_, index) => ListTile(
-              leading: CircleAvatar(
-                radius: 30,
-                backgroundImage: NetworkImage(
-                  list[index].image,
+      body: SafeArea(
+        child: ValueListenableBuilder<List<PersonModel>>(
+          valueListenable: _controller.personList,
+          builder: (_, list, __) {
+            return ListView.separated(
+              separatorBuilder: (_, __) => const Divider(),
+              itemCount: list.length,
+              itemBuilder: (_, index) => ListTile(
+                leading: CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(
+                    list[index].image,
+                  ),
                 ),
+                title: Text(list[index].name),
+                subtitle: Text(list[index].species),
+                trailing: const Icon(Icons.arrow_forward),
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    Routes.HOME_DETAIL,
+                    arguments: list[index],
+                  );
+                },
               ),
-              title: Text(list[index].name),
-              subtitle: Text(list[index].species),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                Navigator.of(context).pushNamed(
-                  Routes.HOME_DETAIL,
-                  arguments: list[index],
-                );
-              },
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

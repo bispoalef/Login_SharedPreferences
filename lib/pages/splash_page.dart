@@ -25,11 +25,13 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.blue,
-        child: const Center(
-          child: CircularProgressIndicator(
-            color: Colors.white,
+      body: SafeArea(
+        child: Container(
+          color: Colors.blue,
+          child: const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
           ),
         ),
       ),
