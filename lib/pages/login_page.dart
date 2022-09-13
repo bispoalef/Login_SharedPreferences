@@ -9,10 +9,13 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
+            height: size.height,
+            width: size.width,
             color: Colors.green.shade100,
             padding: const EdgeInsets.all(25),
             child: Column(
