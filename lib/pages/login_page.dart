@@ -11,24 +11,42 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: Colors.green.shade100,
         padding: const EdgeInsets.all(25),
         child: Column(
           children: [
-            const Icon(Icons.people),
-            TextField(
-              onChanged: _controller.setLogin,
-              decoration: const InputDecoration(label: Text('Login')),
+            Image.asset(
+              'lib/assets/rick_and_morty.png',
+              errorBuilder: (_, __, ___) => const Icon(Icons.person),
             ),
-            TextField(
-              onChanged: _controller.setSenha,
-              obscureText: true,
-              decoration: const InputDecoration(label: Text('Senha')),
+            Material(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.green.shade500,
+              elevation: 8,
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    TextField(
+                      onChanged: _controller.setLogin,
+                      decoration: const InputDecoration(label: Text('Login')),
+                    ),
+                    TextField(
+                      onChanged: _controller.setSenha,
+                      obscureText: true,
+                      decoration: const InputDecoration(label: Text('Senha')),
+                    ),
+                  ],
+                ),
+              ),
             ),
+            const SizedBox(height: 15),
             ValueListenableBuilder<bool>(
               valueListenable: _controller.loader,
               builder: (_, loader, __) => loader
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: Colors.green),
                       onPressed: () {
                         _controller.auth().then(
                           (value) {

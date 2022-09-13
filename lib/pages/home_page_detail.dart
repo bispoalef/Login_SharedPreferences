@@ -13,11 +13,27 @@ class HomePageDetail extends StatelessWidget {
         alignment: Alignment.center,
         child: Column(
           children: [
-            Image.network(args.image),
-            Text('Nome: ${args.name}'),
-            Text('Sexo: ${(args.gender == 'Female') ? 'Mulher' : 'Homen'}'),
-            Text('Especie: ${args.species}'),
-            Text('Status: ${args.status}'),
+            CircleAvatar(
+                backgroundImage: NetworkImage(args.image), radius: 250),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.green.shade200,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: Column(
+                children: [
+                  Text('Nome: ${args.name}'),
+                  const Divider(),
+                  Text(
+                      'Sexo: ${(args.gender == 'Female') ? 'Mulher' : 'Homen'}'),
+                  const Divider(),
+                  Text('Especie: ${args.species}'),
+                  const Divider(),
+                  Text('Status: ${args.status}'),
+                ],
+              ),
+            ),
           ],
         ),
       ),
